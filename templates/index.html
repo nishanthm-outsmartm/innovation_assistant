@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Innovation Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>AI-powered Personal Innovation Assistant</h1>
+        <form action="/generate_idea" method="POST">
+            <label for="prompt">Enter your innovation prompt:</label>
+            <input type="text" id="prompt" name="prompt" placeholder="E.g. Innovative idea for an eco-friendly product" required>
+            <button type="submit">Generate Idea</button>
+        </form>
+
+        <h2>Past Ideas:</h2>
+        <ul>
+            {% for idea in ideas %}
+                <li>
+                    <strong>{{ idea.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</strong><br>
+                    <em>Prompt:</em> {{ idea.prompt }}<br>
+                    <em>Generated Idea:</em> {{ idea.idea }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
